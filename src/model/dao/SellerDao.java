@@ -7,8 +7,8 @@ import model.entities.Seller;
 
 public interface SellerDao {
 	
-	void insert(Seller dp);
-	void update(Seller dp);
+	void insert(Seller seller);
+	void update(Seller seller);
 	void deleteById(Integer id);
 	Seller findById(Integer id);
 	List<Seller> findAll();
