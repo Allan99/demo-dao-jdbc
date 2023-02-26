@@ -13,7 +13,7 @@ public class Program2 {
 	public static void main(String[] args) {
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		
 		System.out.println("=== Teste 1: Department findById ====");
 		Department dep = departmentDao.findById(3);
@@ -30,6 +30,12 @@ public class Program2 {
 		dep = new Department(null, "Human Resources");
 		departmentDao.insert(dep);
 		System.out.println("New department inserted: " + dep.getId());
+		
+		System.out.println("\n=== Teste 5: Department update ====");
+		dep = departmentDao.findById(6);
+		dep.setName("Accounting and finance");
+		departmentDao.update(dep);
+		System.out.println("Update completed!");
 	}
 
 }
