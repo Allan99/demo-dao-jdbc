@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import db.DB;
 import db.DbException;
@@ -80,9 +81,30 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 
 	@Override
 	public void deleteById(Integer id) {
+		try(PreparedStatement st = conn.prepareStatement(
+				"UPDATE seller SET DepartmentId = (SELECT MIN(Id) FROM department) WHERE DepartmentId = ?")){
+			
+			st.setInt(1, id);
+			
+			st.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 		
+		try(PreparedStatement st = conn.prepareStatement(
+				"DELETE FROM department WHERE Id = ?")){
+			
+			st.setInt(1, id);
+			
+			st.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+	
 	}
-
+	
 	@Override
 	public Department findById(Integer id) {
 		PreparedStatement st = null;
@@ -142,5 +164,6 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 			DB.closeResultSet(rs);
 		}
 	}
+
 
 }
