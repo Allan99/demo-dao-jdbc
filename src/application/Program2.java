@@ -22,11 +22,16 @@ public class Program2 {
 		departmentDao.update(newDep);
 		System.out.println("Updated successfully!");
 
-		System.out.println("==== Teste 2: department findAll ===");
+		System.out.println("==== Teste 4: department findAll ===");
 		List<Department> departments = departmentDao.findAll();
 		for (Department department : departments) {
 			System.out.println(department);
 		}
+
+		System.out.println("==== Teste 4: department findById ===");
+		int id = 3;
+		Department department = departmentDao.findById(id);
+		System.out.println(department);
 	}
 
 }
