@@ -28,10 +28,16 @@ public class Program2 {
 			System.out.println(department);
 		}
 
-		System.out.println("==== Teste 4: department findById ===");
+		System.out.println("==== Teste 5: department findById ===");
 		int id = 3;
 		Department department = departmentDao.findById(id);
 		System.out.println(department);
+
+		System.out.println("==== Teste 6: department deleteById ===");
+		id = 14;
+		departmentDao.deleteById(id);
+		System.out.println("Deleted successfully!");
+
 	}
 
 }
